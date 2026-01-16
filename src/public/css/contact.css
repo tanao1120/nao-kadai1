@@ -1,0 +1,250 @@
+.contact-form__content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.contact-form__heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contact-form__heading h2 {
+    color: #7a6a5c;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    
+}
+
+/* form */
+.form {
+    width: 100%;
+}
+
+.form__group {
+    display: flex;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid #7a6a5c;
+}
+
+.form__group-title {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form__label--item {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form__label--required {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #f4f1ee;
+    color: #7a6a5c;
+}
+
+.form__group-content {
+    flex: 1;
+}
+
+/* inputs */
+.form__group-content input[type="text"],
+.form__group-content input[type="email"],
+.form__group-content textarea,
+.form__group-content select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #7a6a5c;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 14px;
+}
+
+.form__group-content textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form__group-content select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #666 50%),
+        linear-gradient(135deg, #666 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+/* name inputs (2 columns) */
+.form__group-content input[name="last_name"],
+.form__group-content input[name="first_name"] {
+    width: calc(50% - 8px);
+}
+
+.form__group-content input[name="last_name"] {
+    margin-right: 16px;
+}
+
+/* radios */
+.form__group-content label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 16px;
+    font-size: 14px;
+}
+
+.form__group-content input[type="radio"] {
+    transform: translateY(1px);
+}
+
+/* error */
+.form__error {
+    margin-top: 8px;
+    color: #d33;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* button */
+.form__button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form__button button {
+    width: 200px;
+    padding: 12px 0;
+    border: 1px solid #7a6a5c;
+    background: #7a6a5c;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+}
+
+.form__button button:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+  Confirm
+========================= */
+
+.confirm-table__header {
+    width: 220px;
+    background: #baa899;
+    color: #fff;
+    text-align: left;
+    padding: 16px 18px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.confirm-table__row {
+    border-bottom: 1px solid #e6e0da;
+}
+
+.confirm-table__row:last-child {
+    border-bottom: none;
+}
+
+.confirm-table__header {
+    width: 220px;
+    background: #f4f1ee;
+    color: #baa899;
+    text-align: left;
+    padding: 16px 18px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.confirm-table__data {
+    padding: 16px 18px;
+    font-size: 14px;
+    color: #333;
+}
+
+.confirm-form__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.confirm-form__button {
+    width: 160px;
+    padding: 12px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+}
+
+.confirm-form__button--submit {
+    background: #baa899;
+    border: 1px solid #baa899;
+    color: #fff;
+}
+
+.confirm-form__button--back {
+    background: #fff;
+    border: 1px solid #baa899;
+    color: #baa899;
+}
+
+/* =========================
+  Thanks
+========================= */
+
+.thanks {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 140px 20px 120px;
+    text-align: center;
+}
+
+.thanks__bg-text {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 110px;
+    font-weight: 600;
+    color: #f0ebe7;
+    /* 薄い背景文字 */
+    letter-spacing: 0.08em;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.thanks-message {
+    font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-weight: 300;
+    color: #938273;
+    letter-spacing: 0.1em;
+}
+
+.thanks__button {
+    position: relative;
+    z-index: 1;
+}
+
+.thanks__button-link {
+    display: inline-block;
+    width: 120px;
+    padding: 10px 0;
+    background: #7a6a5c;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+}
