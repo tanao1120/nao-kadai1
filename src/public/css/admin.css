@@ -1,0 +1,231 @@
+.admin {
+    background: #fff;
+    min-height: calc(100vh - 80px);
+    padding: 50px 0;
+}
+
+.admin__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.admin__title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+/* ===== 検索フォーム ===== */
+.admin-search {
+    display: grid;
+    grid-template-columns: 1.8fr 0.8fr 1.2fr 0.8fr auto auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.admin-search__input,
+.admin-search__select,
+.admin-search__date {
+    height: 38px;
+    border: 1px solid #e6e0da;
+    background: #fff;
+    padding: 0 10px;
+    color: #7a6a5c;
+    font-size: 12px;
+}
+
+/* ===== ツール（エクスポート） ===== */
+.admin-tools {
+    margin: 10px 0 15px;
+}
+
+/* ===== ボタン共通 ===== */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 12px;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn--brown {
+    background: #7a6a5c;
+    color: #fff;
+    border: none;
+}
+
+.btn--gray {
+    background: #e6e0da;
+    color: #ffffff;
+    border: none;
+    text-decoration: none;
+}
+
+.btn--outline {
+    background: #fff;
+    border: 1px solid #e6e0da;
+    color: #7a6a5c;
+}
+
+.btn--detail {
+    background: #fff;
+    border: 1px solid #e6e0da;
+    color: #7a6a5c;
+    padding: 6px 12px;
+}
+
+/* ===== テーブル ===== */
+.admin-table {
+    background: #fff;
+    border: 1px solid #e6e0da;
+}
+
+.admin-table__head,
+.admin-table__row {
+    display: grid;
+    grid-template-columns: 1fr 0.6fr 1.4fr 1.2fr 0.5fr;
+    align-items: center;
+}
+
+.admin-table__head {
+    background: #7a6a5c;
+    color: #fff;
+    font-size: 12px;
+    padding: 12px 14px;
+}
+
+.admin-table__row {
+    font-size: 12px;
+    padding: 12px 14px;
+    border-top: 1px solid #eee;
+}
+
+.admin-table__action {
+    text-align: right;
+}
+
+.admin-table__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 15px;
+}
+
+.admin-pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ===== ページネーション（bootstrap-4） ===== */
+.admin-pagination .pagination {
+    display: flex;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+.admin-pagination .page-link {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #e6e0da;
+    background: #fff;
+    color: #7a6a5c;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0;
+}
+
+.admin-pagination .page-item.active .page-link {
+    background: #7a6a5c;
+    color: #fff;
+    border-color: #7a6a5c;
+}
+
+.admin-pagination .page-item.disabled .page-link {
+    opacity: .4;
+}
+
+/* 現在ページ */
+.admin-pagination .pagination .active span {
+    background: #7a6a5c;
+    color: #fff;
+    border-color: #7a6a5c;
+}
+
+/* 矢印アイコンがデカい対策 */
+.admin-pagination .pagination svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== modal ===== */
+.modal {
+    display: none;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+.modal__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.modal__content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(650px, 92vw);
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 1px solid #e6e0da;
+    padding: 30px 35px;
+}
+
+.modal__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    color: #7a6a5c;
+}
+
+.modal__grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 14px 18px;
+    font-size: 12px;
+}
+
+.modal__label {
+    font-weight: 600;
+}
+
+.modal__value {
+    line-height: 1.6;
+}
+
+.modal__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+.btn--delete {
+    background: #d14b3a;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+}

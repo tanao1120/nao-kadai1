@@ -1,10 +1,10 @@
 .contact-form__content {
-    max-width: 720px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 40px 20px 80px;
 }
 
-.contact-form__heading {
+.contact__heading {
     text-align: center;
     margin-bottom: 40px;
 }
@@ -13,8 +13,21 @@
     color: #7a6a5c;
     font-size: 28px;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    
+    letter-spacing: 0.06em;    
+}
+
+.required {
+    color: #d33;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+input[type="radio"] {
+    accent-color: #7a6a5c;
+}
+
+::placeholder {
+    color: #8a8581;
 }
 
 /* form */
@@ -26,7 +39,7 @@
     display: flex;
     gap: 24px;
     padding: 18px 0;
-    border-bottom: 1px solid #7a6a5c;
+    border-bottom: none;
 }
 
 .form__group-title {
@@ -38,17 +51,9 @@
 }
 
 .form__label--item {
+    font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
     font-size: 14px;
     font-weight: 600;
-}
-
-.form__label--required {
-    display: inline-block;
-    font-size: 12px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    background: #f4f1ee;
-    color: #7a6a5c;
 }
 
 .form__group-content {
@@ -62,15 +67,20 @@
 .form__group-content select {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #7a6a5c;
+    border: 0px;
     border-radius: 3px;
-    background: #fff;
+    background: #f4f4f4;
     font-size: 14px;
+    color: #000000;
+}
+
+.form__group-content select:invalid {
+    color: #8a8581;
 }
 
 .form__group-content textarea {
     min-height: 140px;
-    resize: vertical;
+    resize: none;
     line-height: 1.6;
 }
 
@@ -83,14 +93,13 @@
     background-repeat: no-repeat;
 }
 
-/* name inputs (2 columns) */
-.form__group-content input[name="last_name"],
-.form__group-content input[name="first_name"] {
-    width: calc(50% - 8px);
+.name-inputs {
+    display: flex;
+    gap: 16px;
 }
 
-.form__group-content input[name="last_name"] {
-    margin-right: 16px;
+.name-inputs input {
+    width: 100%;
 }
 
 /* radios */
@@ -104,6 +113,22 @@
 
 .form__group-content input[type="radio"] {
     transform: translateY(1px);
+}
+
+.tel-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tel-inputs input {
+    width: 80px;
+    text-align: center;
+}
+
+.tel-hyphen {
+    color: #7a6a5c;
+    font-size: 14px;
 }
 
 /* error */
@@ -123,10 +148,10 @@
 .form__button button {
     width: 200px;
     padding: 12px 0;
-    border: 1px solid #7a6a5c;
-    background: #7a6a5c;
+    border: 1px solid #82756a;
+    background: #82756a;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 0px;
     font-size: 14px;
     letter-spacing: 0.06em;
 }
@@ -139,14 +164,13 @@
   Confirm
 ========================= */
 
-.confirm-table__header {
-    width: 220px;
-    background: #baa899;
-    color: #fff;
-    text-align: left;
-    padding: 16px 18px;
-    font-weight: 600;
-    font-size: 14px;
+.confirm-table {
+    width: 100%;
+    max-width: 700px;
+    /* 見本の幅感。好みで調整OK */
+    margin: 0 auto;
+    border: 1px solid #e6e0da;
+    border-collapse: collapse;
 }
 
 .confirm-table__row {
@@ -158,17 +182,18 @@
 }
 
 .confirm-table__header {
-    width: 220px;
-    background: #f4f1ee;
-    color: #baa899;
-    text-align: left;
-    padding: 16px 18px;
+    width: 240px;
+    background: #baa899;
+    color: #fff;
+    padding: 18px 20px;
     font-weight: 600;
     font-size: 14px;
+    border-right: 1px solid #e6e0da;
 }
 
 .confirm-table__data {
-    padding: 16px 18px;
+    background: #fff;
+    padding: 18px 20px;
     font-size: 14px;
     color: #333;
 }
@@ -183,21 +208,21 @@
 .confirm-form__button {
     width: 160px;
     padding: 12px 0;
-    border-radius: 4px;
+    border-radius: 0px;
     font-size: 14px;
     letter-spacing: 0.06em;
 }
 
 .confirm-form__button--submit {
-    background: #baa899;
-    border: 1px solid #baa899;
+    background: #82756a;
+    border: none;
     color: #fff;
 }
 
 .confirm-form__button--back {
     background: #fff;
-    border: 1px solid #baa899;
-    color: #baa899;
+    border: none;
+    color: #82756a;
 }
 
 /* =========================
@@ -206,30 +231,38 @@
 
 .thanks {
     position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 140px 20px 120px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 0 20px;
+    font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
 }
 
 .thanks__bg-text {
     position: absolute;
-    top: 55%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 110px;
-    font-weight: 600;
-    color: #f0ebe7;
-    /* 薄い背景文字 */
+    font-size: 140px;
+    font-weight: 700;
+    color: #f9f8f8;
     letter-spacing: 0.08em;
     z-index: 0;
     white-space: nowrap;
+    line-height: 1;
+    font-family: "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
-.thanks-message {
-    font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
-    font-weight: 300;
-    color: #938273;
+.thanks__message {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7a6a5c;
     letter-spacing: 0.1em;
 }
 
@@ -242,9 +275,12 @@
     display: inline-block;
     width: 120px;
     padding: 10px 0;
-    background: #7a6a5c;
+    background: #82756a;
     color: #fff;
-    border-radius: 4px;
-    font-size: 14px;
+    border: 1px solid #82756a;
+    border-radius: 0;
+    font-size: 12px;
     letter-spacing: 0.06em;
+    text-decoration: none;
+    font-family: "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }

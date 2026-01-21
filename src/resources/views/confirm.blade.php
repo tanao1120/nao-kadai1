@@ -7,9 +7,35 @@
 @section('content')
 
 <div class="contact-form__content">
-    <div class="contact-form__heading">
+    <div class="contact__heading">
         <h2>Confirm</h2>
     </div>
+
+    @php
+    // 性別表示（FN006）
+    $genderText = '';
+    if (($contact['gender'] ?? '') == '1') $genderText = '男性';
+    if (($contact['gender'] ?? '') == '2') $genderText = '女性';
+    if (($contact['gender'] ?? '') == '3') $genderText = 'その他';
+
+    // 電話番号（FN006：ハイフンなし表示）
+    $tel1 = $contact['tel1'] ?? '';
+    $tel2 = $contact['tel2'] ?? '';
+    $tel3 = $contact['tel3'] ?? '';
+    $tel = ($contact['tel'] ?? '') !== '' ? ($contact['tel'] ?? '') : ($tel1 . $tel2 . $tel3);
+
+    // お問い合わせ種類（表示用）
+    $categoryMap = [
+    '1' => '商品のお届けについて',
+    '2' => '商品の交換について',
+    '3' => '商品トラブル',
+    '4' => 'ショップへのお問い合わせ',
+    '5' => 'その他',
+    ];
+
+    $catgryId = (string)($contact['catgry_id'] ?? '');
+    $categoryText = $categoryMap[$catgryId] ?? '';
+    @endphp
 
     <form class="confirm-form" action="{{ route('contact.store') }}" method="post">
         @csrf
@@ -19,22 +45,13 @@
                 <th class="confirm-table__header">お名前</th>
                 <td class="confirm-table__data">
                     {{ $contact['last_name'] ?? '' }} {{ $contact['first_name'] ?? '' }}
-                    <input type="hidden" name="last_name" value="{{ $contact['last_name'] ?? '' }}">
-                    <input type="hidden" name="first_name" value="{{ $contact['first_name'] ?? '' }}">
                 </td>
             </tr>
 
             <tr class="confirm-table__row">
                 <th class="confirm-table__header">性別</th>
                 <td class="confirm-table__data">
-                    @php
-                    $genderText = '';
-                    if (($contact['gender'] ?? '') == '1') $genderText = '男性';
-                    if (($contact['gender'] ?? '') == '2') $genderText = '女性';
-                    if (($contact['gender'] ?? '') == '3') $genderText = 'その他';
-                    @endphp
                     {{ $genderText }}
-                    <input type="hidden" name="gender" value="{{ $contact['gender'] ?? '' }}">
                 </td>
             </tr>
 
@@ -42,15 +59,13 @@
                 <th class="confirm-table__header">メールアドレス</th>
                 <td class="confirm-table__data">
                     {{ $contact['email'] ?? '' }}
-                    <input type="hidden" name="email" value="{{ $contact['email'] ?? '' }}">
                 </td>
             </tr>
 
             <tr class="confirm-table__row">
                 <th class="confirm-table__header">電話番号</th>
                 <td class="confirm-table__data">
-                    {{ $contact['tel'] ?? '' }}
-                    <input type="hidden" name="tel" value="{{ $contact['tel'] ?? '' }}">
+                    {{ $tel }}
                 </td>
             </tr>
 
@@ -58,7 +73,6 @@
                 <th class="confirm-table__header">住所</th>
                 <td class="confirm-table__data">
                     {{ $contact['address'] ?? '' }}
-                    <input type="hidden" name="address" value="{{ $contact['address'] ?? '' }}">
                 </td>
             </tr>
 
@@ -66,25 +80,13 @@
                 <th class="confirm-table__header">建物名</th>
                 <td class="confirm-table__data">
                     {{ $contact['building'] ?? '' }}
-                    <input type="hidden" name="building" value="{{ $contact['building'] ?? '' }}">
                 </td>
             </tr>
 
             <tr class="confirm-table__row">
                 <th class="confirm-table__header">お問い合わせの種類</th>
                 <td class="confirm-table__data">
-                    @php
-                    $categoryMap = [
-                    '1' => '商品のお届けについて',
-                    '2' => '商品の交換について',
-                    '3' => '商品トラブル',
-                    '4' => 'ショップへのお問い合わせ',
-                    '5' => 'その他',
-                    ];
-                    $categoryText = $categoryMap[$contact['category_id'] ?? ''] ?? '';
-                    @endphp
                     {{ $categoryText }}
-                    <input type="hidden" name="category_id" value="{{ $contact['category_id'] ?? '' }}">
                 </td>
             </tr>
 
@@ -92,16 +94,38 @@
                 <th class="confirm-table__header">お問い合わせ内容</th>
                 <td class="confirm-table__data">
                     {!! nl2br(e($contact['detail'] ?? '')) !!}
-                    <input type="hidden" name="detail" value="{{ $contact['detail'] ?? '' }}">
                 </td>
             </tr>
         </table>
 
-        <div class="confirm-form__buttons">
-            <button class="confirm-form__button confirm-form__button--submit" type="submit">送信</button>
+        {{-- 送信用 hidden --}}
+        <input type="hidden" name="last_name" value="{{ $contact['last_name'] ?? '' }}">
+        <input type="hidden" name="first_name" value="{{ $contact['first_name'] ?? '' }}">
+        <input type="hidden" name="gender" value="{{ $contact['gender'] ?? '' }}">
+        <input type="hidden" name="email" value="{{ $contact['email'] ?? '' }}">
 
-            {{-- 修正：前画面に戻る（入力値はhiddenで戻す or sessionで戻す） --}}
-            <button class="confirm-form__button confirm-form__button--back" type="submit" formaction="{{ route('contact.index') }}" formmethod="get">
+        {{-- tel は結合した値を保存（ハイフンなし） --}}
+        <input type="hidden" name="tel" value="{{ $tel }}">
+
+        {{-- 修正で戻る用（3分割も持っておく） --}}
+        <input type="hidden" name="tel1" value="{{ $tel1 }}">
+        <input type="hidden" name="tel2" value="{{ $tel2 }}">
+        <input type="hidden" name="tel3" value="{{ $tel3 }}">
+
+        <input type="hidden" name="address" value="{{ $contact['address'] ?? '' }}">
+        <input type="hidden" name="building" value="{{ $contact['building'] ?? '' }}">
+        <input type="hidden" name="catgry_id" value="{{ $catgryId }}">
+        <input type="hidden" name="detail" value="{{ $contact['detail'] ?? '' }}">
+
+        <div class="confirm-form__buttons">
+            {{-- 送信 --}}
+            <button class="confirm-form__button confirm-form__button--submit" type="submit">
+                送信
+            </button>
+
+            {{-- 修正 --}}
+            <button
+                <button type="button" onclick="history.back()">
                 修正
             </button>
         </div>

@@ -16,11 +16,19 @@
     @if (!isset($noHeader))
     <header class="header">
         <div class="header__inner">
-            <div class="header__logo"><a href="{{ route('contact.index') }}">FashionablyLate</a></div>
+            <div class="header__logo">
+                <a href="{{ route('contact.index') }}">FashionablyLate</a>
+            </div>
 
-            @hasSection('header_btn')
-            <div class="header__btn">@yield('header_btn')</div>
-            @endif
+            <div class="header__btn">
+                @if (Request::is('login'))
+                <a class="header__btn-link" href="{{ route('register') }}">register</a>
+                @elseif (Request::is('register'))
+                <a class="header__btn-link" href="{{ route('login') }}">login</a>
+                @elseif (Request::is('admin'))
+                <a class="header__btn-link" href="#">logout</a>
+                @endif
+            </div>
         </div>
     </header>
     @endif

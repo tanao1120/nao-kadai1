@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +17,9 @@ use App\Http\Controllers\AuthController;
 
 
 Route::get('/', [ContactController::class, 'index'])->name('contact.index');
-
 Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-
-Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');
-
-Route::get('/register', [ContactController::class, 'register'])->name('register');
-
-Route::get('/login', [ContactController::class, 'login'])->name('login');
+Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::delete('/admin/{contact}', [AdminController::class, 'destroy'])->name('admin.destroy');
+Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
