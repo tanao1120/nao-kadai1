@@ -26,7 +26,10 @@
                 @elseif (Request::is('register'))
                 <a class="header__btn-link" href="{{ route('login') }}">login</a>
                 @elseif (Request::is('admin'))
-                <a class="header__btn-link" href="#">logout</a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="header__btn-link" type="submit">logout</button>
+                </form>
                 @endif
             </div>
         </div>
