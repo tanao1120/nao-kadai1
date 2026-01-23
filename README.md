@@ -4,6 +4,7 @@
 
 ## 環境構築
 
+<<<<<<< HEAD
 ### Dockerビルド
 ```bash
 git clone https://github.com/なおちゃんのユーザー名/nao-kadai1.git
@@ -11,19 +12,35 @@ cd nao-kadai1
 docker-compose up -d --build
 
 ### Laravel環境構築
+=======
+# Dockerビルド
+git clone https://github.com/tanao1120/nao-kadai1.git
+cd nao-kadai1
+docker-compose up -d --build
+
+# Laravel環境構築
+>>>>>>> 95a051c (READMEの編集)
 docker-compose exec php bash
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
 
+<<<<<<< HEAD
 ### 開発環境
+=======
+# 開発環境
+>>>>>>> 95a051c (READMEの編集)
 お問い合わせフォーム：http://localhost/
 ユーザー登録：http://localhost/register
 管理画面：http://localhost/admin
 phpMyAdmin：http://localhost:8080
 
+<<<<<<< HEAD
 ###使用技術（実行環境）
+=======
+# 使用技術（実行環境）
+>>>>>>> 95a051c (READMEの編集)
 PHP 8.1
 Laravel 10.x
 MySQL 8.0
