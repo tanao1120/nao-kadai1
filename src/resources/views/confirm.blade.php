@@ -12,19 +12,19 @@
     </div>
 
     @php
-    // 性別表示（FN006）
+    // 性別表示
     $genderText = '';
     if (($contact['gender'] ?? '') == '1') $genderText = '男性';
     if (($contact['gender'] ?? '') == '2') $genderText = '女性';
     if (($contact['gender'] ?? '') == '3') $genderText = 'その他';
 
-    // 電話番号（FN006：ハイフンなし表示）
+    // 電話番号
     $tel1 = $contact['tel1'] ?? '';
     $tel2 = $contact['tel2'] ?? '';
     $tel3 = $contact['tel3'] ?? '';
     $tel = ($contact['tel'] ?? '') !== '' ? ($contact['tel'] ?? '') : ($tel1 . $tel2 . $tel3);
 
-    // お問い合わせ種類（表示用）
+    // お問い合わせ種類
     $categoryMap = [
     '1' => '商品のお届けについて',
     '2' => '商品の交換について',
@@ -33,8 +33,8 @@
     '5' => 'その他',
     ];
 
-    $catgryId = (string)($contact['catgry_id'] ?? '');
-    $categoryText = $categoryMap[$catgryId] ?? '';
+    $categoryId = (string)($contact['category_id'] ?? '');
+    $categoryText = $categoryMap[$categoryId] ?? '';
     @endphp
 
     <form class="confirm-form" action="{{ route('contact.store') }}" method="post">
@@ -104,17 +104,15 @@
         <input type="hidden" name="gender" value="{{ $contact['gender'] ?? '' }}">
         <input type="hidden" name="email" value="{{ $contact['email'] ?? '' }}">
 
-        {{-- tel は結合した値を保存（ハイフンなし） --}}
         <input type="hidden" name="tel" value="{{ $tel }}">
 
-        {{-- 修正で戻る用（3分割も持っておく） --}}
         <input type="hidden" name="tel1" value="{{ $tel1 }}">
         <input type="hidden" name="tel2" value="{{ $tel2 }}">
         <input type="hidden" name="tel3" value="{{ $tel3 }}">
 
         <input type="hidden" name="address" value="{{ $contact['address'] ?? '' }}">
         <input type="hidden" name="building" value="{{ $contact['building'] ?? '' }}">
-        <input type="hidden" name="catgry_id" value="{{ $catgryId }}">
+        <input type="hidden" name="category_id" value="{{ $categoryId }}">
         <input type="hidden" name="detail" value="{{ $contact['detail'] ?? '' }}">
 
         <div class="confirm-form__buttons">

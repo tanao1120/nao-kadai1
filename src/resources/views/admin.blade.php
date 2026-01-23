@@ -30,12 +30,12 @@
                 <option value="3" {{ (string)$filters['gender'] === '3' ? 'selected' : '' }}>その他</option>
             </select>
 
-            {{-- categoriesテーブルのデータから選択（要件FN002） --}}
-            <select class="admin-search__select" name="categry_id">
+            {{-- categoriesテーブルのデータから選択 --}}
+            <select class="admin-search__select" name="category_id">
                 <option value="">お問い合わせの種類</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}"
-                    {{ (string)$filters['categry_id'] === (string)$category->id ? 'selected' : '' }}>
+                    {{ (string)$filters['category_id'] === (string)$category->id ? 'selected' : '' }}>
                     {{ $category->content }}
                 </option>
                 @endforeach

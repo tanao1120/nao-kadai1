@@ -39,7 +39,7 @@ class ContactController extends Controller
             'tel' => ['required'],
             'address' => ['required'],
             'building' => ['nullable'],
-            'categry_id' => ['required'],
+            'category_id' => ['required'],
             'detail' => ['required', 'max:120'],
         ]);
 

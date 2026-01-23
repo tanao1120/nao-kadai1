@@ -14,7 +14,7 @@ class AdminController extends Controller
         $filters = [
             'keyword'    => trim((string) $request->query('keyword', '')),
             'gender'     => trim((string) $request->query('gender', '')),
-            'categry_id' => trim((string) $request->query('categry_id', '')),
+            'category_id' => trim((string) $request->query('category_id', '')),
             'date'       => trim((string) $request->query('date', '')),
         ];
 
@@ -40,8 +40,8 @@ class AdminController extends Controller
         }
 
         // カテゴリ
-        if ($filters['categry_id'] !== '') {
-            $query->where('categry_id', (int) $filters['categry_id']);
+        if ($filters['category_id'] !== '') {
+            $query->where('category_id', (int) $filters['category_id']);
         }
 
         // 日付（created_at の日付一致）
@@ -57,14 +57,13 @@ class AdminController extends Controller
     }
 
     /**
-     * CSVエクスポート（検索で絞り込んだ結果も対象：FN024）
      */
     public function export(Request $request)
     {
         $filters = [
             'keyword'    => trim((string) $request->query('keyword', '')),
             'gender'     => trim((string) $request->query('gender', '')),
-            'categry_id' => trim((string) $request->query('categry_id', '')),
+            'category_id' => trim((string) $request->query('category_id', '')),
             'date'       => trim((string) $request->query('date', '')),
         ];
 
@@ -85,8 +84,8 @@ class AdminController extends Controller
             $query->where('gender', (int) $filters['gender']);
         }
 
-        if ($filters['categry_id'] !== '') {
-            $query->where('categry_id', (int) $filters['categry_id']);
+        if ($filters['category_id'] !== '') {
+            $query->where('category_id', (int) $filters['category_id']);
         }
 
         if ($filters['date'] !== '') {

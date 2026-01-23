@@ -10,6 +10,6 @@ class Category extends Model
 
     public function contacts()
     {
-        return $this->hasMany(Contact::class, 'categry_id');
+        return $this->hasMany(Contact::class, 'category_id');
     }
 }

@@ -14,17 +14,17 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // お名前（姓・名で分ける）
+            // お名前
             'last_name'  => ['required', 'string', 'max:8'],
             'first_name' => ['required', 'string', 'max:8'],
 
-            // 性別（1/2/3）
+            // 性別
             'gender'     => ['required'],
 
             // メール
             'email'      => ['required', 'email'],
 
-            // 電話番号（3分割・各5桁まで）
+            // 電話番号
             'tel1'       => ['required', 'regex:/^\d+$/', 'max:5'],
             'tel2'       => ['required', 'regex:/^\d+$/', 'max:5'],
             'tel3'       => ['required', 'regex:/^\d+$/', 'max:5'],
@@ -32,12 +32,11 @@ class ContactRequest extends FormRequest
             // 住所
             'address'    => ['required'],
 
-            // 建物名（任意）
+            // 建物名
             'building'   => ['nullable'],
 
-            // お問い合わせの種類（categories由来）
-            // 仕様書のtypoに合わせて categry_id
-            'catgry_id' => ['required'],
+            // お問い合わせの種類
+            'category_id' => ['required'],
 
             // 内容
             'detail'     => ['required', 'max:120'],
@@ -46,7 +45,6 @@ class ContactRequest extends FormRequest
 
     public function messages(): array
     {
-        // 「以上の文言は必ず守ってください。評価項目」なので、ここは固定文言。
         return [
             // お名前
             'last_name.required'  => '姓を入力してください',
@@ -69,7 +67,7 @@ class ContactRequest extends FormRequest
             'tel2.regex'          => '電話番号は 半角英数字で入力してください',
             'tel3.regex'          => '電話番号は 半角英数字で入力してください',
 
-            // 電話番号（5桁超え）
+            // 電話番号（5桁）
             'tel1.max'            => '電話番号は 5桁まで数字で入力してください',
             'tel2.max'            => '電話番号は 5桁まで数字で入力してください',
             'tel3.max'            => '電話番号は 5桁まで数字で入力してください',
@@ -78,7 +76,7 @@ class ContactRequest extends FormRequest
             'address.required'    => '住所を入力してください',
 
             // お問い合わせの種類
-            'catgry_id.required' => 'お問い合わせの種類を選択してください',
+            'category_id.required' => 'お問い合わせの種類を選択してください',
 
             // お問い合わせ内容
             'detail.required'     => 'お問い合わせ内容を入力してください',

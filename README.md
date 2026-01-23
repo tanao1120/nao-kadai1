@@ -46,7 +46,7 @@ erDiagram
 
     contacts {
         bigint id PK
-        bigint categry_id FK
+        bigint category_id FK
         varchar first_name
         varchar last_name
         tinyint gender

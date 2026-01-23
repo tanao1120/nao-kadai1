@@ -162,10 +162,10 @@
             </div>
             <div class="form__group-content">
                 @php
-                $categoryVal = old('catgry_id', request('catgry_id'));
+                $categoryVal = old('category_id', request('category_id'));
                 @endphp
 
-                <select name="categry_id" required>
+                <select name="category_id" required>
                     <option value="" disabled {{ $categoryVal ? '' : 'selected' }}>選択してください</option>
 
                     @foreach ($categories as $category)
@@ -175,7 +175,7 @@
                     @endforeach
                 </select>
                 <div class="form__error">
-                    @error('categry_id') {{ $message }} @enderror
+                    @error('category_id') {{ $message }} @enderror
                 </div>
             </div>
         </div>

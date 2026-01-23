@@ -12,7 +12,7 @@ class ContactFactory extends Factory
     public function definition(): array
     {
         return [
-            'categry_id' => $this->faker->numberBetween(1, 5),
+            'category_id' => $this->faker->numberBetween(1, 5),
 
             'first_name' => $this->faker->firstName(),
             'last_name'  => $this->faker->lastName(),

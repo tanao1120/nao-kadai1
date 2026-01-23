@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('catgry_id');
+            $table->unsignedBigInteger('ccategory_id');
 
             $table->string('first_name');
             $table->string('last_name');
@@ -29,7 +29,7 @@ class CreateContactsTable extends Migration
             $table->string('building')->nullable();
             $table->text('detail');
             $table->timestamps();
-            $table->foreign('catgry_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
