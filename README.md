@@ -10,11 +10,11 @@ cd nao-kadai1
 docker-compose up -d --build  
 
 ### Laravel環境構築
-docker-compose exec php bash
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --seed
+docker-compose exec php bash  
+composer install  
+cp .env.example .env  
+php artisan key:generate  
+php artisan migrate --seed  
 
 ### 開発環境
 お問い合わせフォーム：http://localhost/  
