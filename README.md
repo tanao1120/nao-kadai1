@@ -5,9 +5,9 @@
 ## 環境構築
 
 ### Dockerビルド
-git clone https://github.com/tanao1120/nao-kadai1.git
-cd nao-kadai1
-docker-compose up -d --build
+git clone https://github.com/tanao1120/nao-kadai1.git  
+cd nao-kadai1  
+docker-compose up -d --build  
 
 ### Laravel環境構築
 docker-compose exec php bash
@@ -17,18 +17,18 @@ php artisan key:generate
 php artisan migrate --seed
 
 ### 開発環境
-お問い合わせフォーム：http://localhost/
-ユーザー登録：http://localhost/register
-管理画面：http://localhost/admin
-phpMyAdmin：http://localhost:8080
+お問い合わせフォーム：http://localhost/  
+ユーザー登録：http://localhost/register  
+管理画面：http://localhost/admin  
+phpMyAdmin：http://localhost:8080  
 
 ### 使用技術（実行環境）
-PHP 8.1
-Laravel 10.x
-MySQL 8.0
-Nginx
-Docker / Docker Compose
-Laravel Fortify（認証）
+PHP 8.1  
+Laravel 10.x  
+MySQL 8.0  
+Nginx  
+Docker / Docker Compose  
+Laravel Fortify（認証）  
 
 ## ER 図
 
