@@ -31,7 +31,7 @@
     $categoryText = $category->content ?? '';
     }
 
-    // チェックボックス（きっかけ）
+    // このサイトを知ったきっかけ
     $selectedChannels = $contact['channels'] ?? [];
     $channelTexts = [];
 
@@ -80,13 +80,13 @@
             </tr>
 
             <tr>
-                <th>お問い合わせの種類</th>
-                <td>{{ $categoryText }}</td>
+                <th>このサイトを知ったきっかけ</th>
+                <td>{{ implode('、', $channelTexts) }}</td>
             </tr>
 
             <tr>
-                <th>お問い合わせを知ったきっかけ</th>
-                <td>{{ implode('、', $channelTexts) }}</td>
+                <th>お問い合わせの種類</th>
+                <td>{{ $categoryText }}</td>
             </tr>
 
             <tr>
@@ -94,9 +94,18 @@
                 <td>{!! nl2br(e($contact['detail'] ?? '')) !!}</td>
             </tr>
 
+            <tr>
+                <th>画像</th>
+                <td>
+                    @if (!empty($contact['tmp_image_path']))
+                    <img src="{{ \Storage::url($contact['tmp_image_path']) }}" alt="upload" style="max-width:200px;">
+                    @endif
+                </td>
+            </tr>
+
+
         </table>
 
-        {{-- hidden送信用 --}}
         <input type="hidden" name="last_name" value="{{ $contact['last_name'] ?? '' }}">
         <input type="hidden" name="first_name" value="{{ $contact['first_name'] ?? '' }}">
         <input type="hidden" name="gender" value="{{ $contact['gender'] ?? '' }}">
@@ -107,7 +116,10 @@
         <input type="hidden" name="category_id" value="{{ $contact['category_id'] ?? '' }}">
         <input type="hidden" name="detail" value="{{ $contact['detail'] ?? '' }}">
 
-        {{-- channelsは配列なので注意 --}}
+        @if (!empty($contact['tmp_image_path']))
+        <input type="hidden" name="tmp_image_path" value="{{ $contact['tmp_image_path'] }}">
+        @endif
+
         @foreach ($selectedChannels as $ch)
         <input type="hidden" name="channels[]" value="{{ $ch }}">
         @endforeach

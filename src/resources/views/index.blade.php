@@ -11,7 +11,8 @@
         <h2>Contact</h2>
     </div>
 
-    <form class="form" action="{{ route('contact.confirm') }}" method="post" novalidate>
+    <form class="form" action="{{ route('contact.confirm') }}" method="post" novalidate enctype="multipart/form-data">
+
         @csrf
 
         {{-- お名前 --}}
@@ -154,36 +155,10 @@
             </div>
         </div>
 
-        {{-- お問い合わせ種別 --}}
+        {{-- どこで知りましたか？ --}}
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">お問い合わせの種類</span>
-                <span class="required">※</span>
-            </div>
-            <div class="form__group-content">
-                @php
-                $categoryVal = old('category_id', request('category_id'));
-                @endphp
-
-                <select name="category_id" required>
-                    <option value="" disabled {{ $categoryVal ? '' : 'selected' }}>選択してください</option>
-
-                    @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ (string)$categoryVal === (string)$category->id ? 'selected' : '' }}>
-                        {{ $category->content }}
-                    </option>
-                    @endforeach
-                </select>
-                <div class="form__error">
-                    @error('category_id') {{ $message }} @enderror
-                </div>
-            </div>
-        </div>
-
-        {{-- お問い合わせを知ったきっかけ --}}
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">お問い合わせを知ったきっかけ</span>
+                <span class="form__label--item">どこで知りましたか？</span>
                 <span class="required">※</span>
             </div>
             <div class="form__group-content">
@@ -210,6 +185,32 @@
             </div>
         </div>
 
+        {{-- お問い合わせ種別 --}}
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">お問い合わせの種類</span>
+                <span class="required">※</span>
+            </div>
+            <div class="form__group-content">
+                @php
+                $categoryVal = old('category_id', request('category_id'));
+                @endphp
+
+                <select name="category_id" required>
+                    <option value="" disabled {{ $categoryVal ? '' : 'selected' }}>選択してください</option>
+
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ (string)$categoryVal === (string)$category->id ? 'selected' : '' }}>
+                        {{ $category->content }}
+                    </option>
+                    @endforeach
+                </select>
+                <div class="form__error">
+                    @error('category_id') {{ $message }} @enderror
+                </div>
+            </div>
+        </div>
+
         {{-- お問い合わせ内容 --}}
         <div class="form__group">
             <div class="form__group-title">
@@ -223,6 +224,20 @@
                 </div>
             </div>
         </div>
+
+        {{-- 画像アップロード --}}
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">画像</span>
+            </div>
+            <div class="form__group-content">
+                <input type="file" name="image" accept="image/*">
+                <div class="form__error">
+                    @error('image') {{ $message }} @enderror
+                </div>
+            </div>
+        </div>
+
 
         <div class="form__button">
             <button type="submit">確認画面</button>

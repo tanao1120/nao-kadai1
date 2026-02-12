@@ -35,12 +35,15 @@ class ContactRequest extends FormRequest
             // 建物名
             'building'   => ['nullable'],
 
-            // お問い合わせの種類
-            'category_id' => ['required', 'exists:categories,id'],
-
-            // ✅ チェックボックス（きっかけ）※複数
+            // このサイトを知ったきっかけ
             'channels'   => ['required', 'array', 'min:1'],
             'channels.*' => ['integer', 'exists:channels,id'],
+
+            // ファイルアップロード
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+
+            // お問い合わせの種類
+            'category_id' => ['required', 'exists:categories,id'],
 
             // 内容
             'detail'     => ['required', 'max:120'],
@@ -79,15 +82,15 @@ class ContactRequest extends FormRequest
             // 住所
             'address.required'    => '住所を入力してください',
 
+            // このサイトを知ったきっかけ
+            'channels.required'    => 'このサイトを知ったきっかけを選択してください',
+            'channels.array'       => 'このサイトを知ったきっかけを正しく選択してください',
+            'channels.min'         => 'このサイトを知ったきっかけを1つ以上選択してください',
+            'channels.*.exists'    => 'このサイトを知ったきっかけを正しく選択してください',
+
             // お問い合わせの種類
             'category_id.required' => 'お問い合わせの種類を選択してください',
             'category_id.exists'   => 'お問い合わせの種類を正しく選択してください',
-
-            // ✅ チェックボックス（きっかけ）
-            'channels.required'    => 'お問い合わせを知ったきっかけを選択してください',
-            'channels.array'       => 'お問い合わせを知ったきっかけを正しく選択してください',
-            'channels.min'         => 'お問い合わせを知ったきっかけを1つ以上選択してください',
-            'channels.*.exists'    => 'お問い合わせを知ったきっかけを正しく選択してください',
 
             // お問い合わせ内容
             'detail.required'     => 'お問い合わせ内容を入力してください',
