@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Channel;
+
 
 class Contact extends Model
 {
@@ -24,5 +26,10 @@ class Contact extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class, 'contact_channel')->withTimestamps();
     }
 }

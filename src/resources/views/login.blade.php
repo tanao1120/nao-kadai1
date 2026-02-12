@@ -17,14 +17,14 @@
     <h2 class="auth__heading">Login</h2>
 
     <div class="auth__card">
-        <form class="auth__form" action="{{ route('login') }}" method="post">
+        <form class="auth__form" action="{{ route('login') }}" method="post" novalidate>
             @csrf
 
             {{-- 全体エラー（認証失敗など） --}}
             @if ($errors->any())
-                <div class="form__error">
-                    {{ $errors->first() }}
-                </div>
+            <div class="form__error">
+                {{ $errors->first() }}
+            </div>
             @endif
 
             <div class="auth__group">
@@ -37,8 +37,7 @@
                     value="{{ old('email') }}"
                     placeholder="例: test@example.com"
                     required
-                    autofocus
-                >
+                    autofocus>
                 <div class="form__error">@error('email') {{ $message }} @enderror</div>
             </div>
 
@@ -51,8 +50,7 @@
                     name="password"
                     placeholder="例: coachtech1106"
                     required
-                    autocomplete="current-password"
-                >
+                    autocomplete="current-password">
                 <div class="form__error">@error('password') {{ $message }} @enderror</div>
             </div>
 

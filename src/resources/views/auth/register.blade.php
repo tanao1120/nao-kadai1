@@ -17,7 +17,7 @@
     </div>
 
     <div class="auth__card">
-        <form class="auth__form" action="{{ route('register') }}" method="post">
+        <form class="auth__form" action="{{ route('register') }}" method="post" novalidate>
             @csrf
 
             <div class="auth__group">

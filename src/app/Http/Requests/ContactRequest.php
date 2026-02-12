@@ -36,7 +36,11 @@ class ContactRequest extends FormRequest
             'building'   => ['nullable'],
 
             // お問い合わせの種類
-            'category_id' => ['required'],
+            'category_id' => ['required', 'exists:categories,id'],
+
+            // ✅ チェックボックス（きっかけ）※複数
+            'channels'   => ['required', 'array', 'min:1'],
+            'channels.*' => ['integer', 'exists:channels,id'],
 
             // 内容
             'detail'     => ['required', 'max:120'],
@@ -62,7 +66,7 @@ class ContactRequest extends FormRequest
             'tel2.required'       => '電話番号を入力してください',
             'tel3.required'       => '電話番号を入力してください',
 
-            // 電話番号（全角など＝数字以外）
+            // 電話番号（数字以外）
             'tel1.regex'          => '電話番号は 半角英数字で入力してください',
             'tel2.regex'          => '電話番号は 半角英数字で入力してください',
             'tel3.regex'          => '電話番号は 半角英数字で入力してください',
@@ -77,6 +81,13 @@ class ContactRequest extends FormRequest
 
             // お問い合わせの種類
             'category_id.required' => 'お問い合わせの種類を選択してください',
+            'category_id.exists'   => 'お問い合わせの種類を正しく選択してください',
+
+            // ✅ チェックボックス（きっかけ）
+            'channels.required'    => 'お問い合わせを知ったきっかけを選択してください',
+            'channels.array'       => 'お問い合わせを知ったきっかけを正しく選択してください',
+            'channels.min'         => 'お問い合わせを知ったきっかけを1つ以上選択してください',
+            'channels.*.exists'    => 'お問い合わせを知ったきっかけを正しく選択してください',
 
             // お問い合わせ内容
             'detail.required'     => 'お問い合わせ内容を入力してください',

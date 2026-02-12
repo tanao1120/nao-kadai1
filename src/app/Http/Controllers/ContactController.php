@@ -4,29 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
 use App\Models\Category;
+use App\Models\Channel;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    // PG01: 入力ページ GET /
     public function index()
     {
         $categories = Category::all();
-        return view('index', compact('categories'));
+        $channels = Channel::all();
+
+        return view('index', compact('categories', 'channels'));
     }
 
-    // PG02: 確認ページ POST /confirm
     public function confirm(ContactRequest $request)
     {
         $validated = $request->validated();
 
-        $tel = $validated['tel1'] . $validated['tel2'] . $validated['tel3'];
+        $tel = ($validated['tel1'] ?? '') . ($validated['tel2'] ?? '') . ($validated['tel3'] ?? '');
 
         $contact = $validated;
         $contact['tel'] = $tel;
 
-        return view('confirm', compact('contact'));
+        $categories = Category::all();
+        $channels = Channel::all();
+
+        return view('confirm', compact('contact', 'categories', 'channels'));
     }
 
     public function store(Request $request)
@@ -39,16 +43,23 @@ class ContactController extends Controller
             'tel' => ['required'],
             'address' => ['required'],
             'building' => ['nullable'],
-            'category_id' => ['required'],
+            'category_id' => ['required', 'exists:categories,id'],
             'detail' => ['required', 'max:120'],
+
+            'channels' => ['required', 'array', 'min:1'],
+            'channels.*' => ['integer', 'exists:channels,id'],
         ]);
 
-        Contact::create($data);
+        $channels = $data['channels'];
+        unset($data['channels']);
+
+        $contact = Contact::create($data);
+
+        $contact->channels()->attach($channels);
 
         return view('thanks');
     }
 
-    // PG03: サンクス GET /thanks
     public function thanks()
     {
         return view('thanks');

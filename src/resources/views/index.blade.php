@@ -180,6 +180,36 @@
             </div>
         </div>
 
+        {{-- お問い合わせを知ったきっかけ --}}
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">お問い合わせを知ったきっかけ</span>
+                <span class="required">※</span>
+            </div>
+            <div class="form__group-content">
+
+                @php
+                $selectedChannels = old('channels', request('channels', []));
+                @endphp
+
+                @foreach ($channels as $channel)
+                <label style="display:block; margin-bottom:5px;">
+                    <input
+                        type="checkbox"
+                        name="channels[]"
+                        value="{{ $channel->id }}"
+                        {{ in_array($channel->id, $selectedChannels ?? []) ? 'checked' : '' }}>
+                    {{ $channel->content }}
+                </label>
+                @endforeach
+
+                <div class="form__error">
+                    @error('channels') {{ $message }} @enderror
+                </div>
+
+            </div>
+        </div>
+
         {{-- お問い合わせ内容 --}}
         <div class="form__group">
             <div class="form__group-title">
