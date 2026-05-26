@@ -53,7 +53,6 @@ class ContactController extends Controller
             'building' => ['nullable'],
             'category_id' => ['required', 'exists:categories,id'],
             'detail' => ['required', 'max:120'],
-
             'channels' => ['required', 'array', 'min:1'],
             'channels.*' => ['integer', 'exists:channels,id'],
             'tmp_image_path' => ['nullable', 'string'],
